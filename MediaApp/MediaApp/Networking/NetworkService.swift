@@ -11,6 +11,13 @@ protocol NetworkServiceProtocol {
     func request<T: Decodable>(endpoint: Endpoint, completion: @escaping (Result<T, NetworkError>) -> Void)
 }
 
+enum NetworkError: Error {
+    case invalidUrl
+    case networkError(Error)
+    case noData
+    case decodingError(Error)
+}
+
 class NetworkService: NetworkServiceProtocol {
     private let apiKey: String
     private let session: URLSession
@@ -21,28 +28,36 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     func request<T: Decodable>(endpoint: Endpoint, completion: @escaping (Result<T, NetworkError>) -> Void) {
-        guard let url = endpoint.url else {
+        guard var components = URLComponents(string: endpoint.basePath + endpoint.path) else {
             completion(.failure(.invalidUrl))
             return
         }
         
-        var urlRequest = URLRequest(url: url)
-        // Asegura que los query items incluyan la API key
-        if var components = URLComponents(url: url, resolvingAgainstBaseURL: true) {
-            var queryItems = components.queryItems ?? []
-            queryItems.append(URLQueryItem(name: "api_key", value: apiKey))
-            components.queryItems = queryItems
-            
-            // Actualiza el URL del request en caso de que el URLComponents haya cambiado
-            urlRequest.url = components.url
+        if !endpoint.queryItems.contains(where: { $0.name == "api_key" }) {
+            components.queryItems = (components.queryItems ?? []) + [URLQueryItem(name: "api_key", value: apiKey)]
+        } else {
+            components.queryItems = endpoint.queryItems
         }
+
+        guard let url = components.url else {
+            completion(.failure(.invalidUrl))
+            return
+        }
+
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = endpoint.method.rawValue
         
+        if let bodyParameters = endpoint.bodyParameters, ["POST", "PUT", "PATCH"].contains(endpoint.method.rawValue) {
+            urlRequest.httpBody = bodyParameters
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+
         let task = session.dataTask(with: urlRequest) { data, response, error in
             guard let data = data, error == nil else {
                 completion(.failure(.networkError(error!)))
                 return
             }
-            
+
             do {
                 let decodedResponse = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(decodedResponse))
@@ -50,27 +65,13 @@ class NetworkService: NetworkServiceProtocol {
                 completion(.failure(.decodingError(error)))
             }
         }
-        
+
         task.resume()
     }
 }
 
-enum NetworkError: Error {
-    case invalidUrl
-    case networkError(Error)
-    case noData
-    case decodingError(Error)
+extension URLComponents {
+    func queryItemsContains(apiKey: String) -> Bool {
+        return queryItems?.contains(where: { $0.name == "api_key" && $0.value == apiKey }) ?? false
+    }
 }
-
-
-
-//let networkService = NetworkService(baseUrl: "", apiKey: <#T##String#>)
-
-//networkService.request(endpoint: Endpoint(path: "/movie/popular", method: .get, queryItems: nil)) { (result: Result<MovieResponse, NetworkError>) in
-//    switch result {
-//    case .success(let movieResponse):
-//        print(movieResponse) // Haz algo con la respuesta
-//    case .failure(let error):
-//        print(error) // Maneja el error
-//    }
-//}

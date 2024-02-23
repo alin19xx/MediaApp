@@ -10,9 +10,13 @@ import Foundation
 struct SessionEndpoint: Endpoint {
     var basePath: String = "https://api.themoviedb.org/3"
     var path: String = "/authentication/session/new"
-    var queryItems: [URLQueryItem]
+    var queryItems: [URLQueryItem] = []
+    var method: HttpMethod = .post
+    var bodyParameters: Data?
 
     init(requestToken: String) {
-        self.queryItems = [URLQueryItem(name: "request_token", value: requestToken)]
+        let parameters = ["request_token": requestToken]
+        self.bodyParameters = try? JSONSerialization.data(withJSONObject: parameters, options: [])
     }
 }
+
