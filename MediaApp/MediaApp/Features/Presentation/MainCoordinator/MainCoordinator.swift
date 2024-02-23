@@ -21,11 +21,12 @@ final class MainCoordinator: NSObject, Coordinator {
         self.navigationController = navigationController
     }
     
-    func start() {
-//        let home = StadiumListView()
-//        home.mainCoordinator = self
-//        
-//        self.navigationController.pushViewController(home, animated: true)
+    func start(authVM: AuthenticationViewModel) {
+        let home = AuthViewController()
+        home.mainCoordinator = self
+        home.viewModel = authVM
+        
+        self.navigationController.pushViewController(home, animated: true)
     }
     
     func dismissViewController() {

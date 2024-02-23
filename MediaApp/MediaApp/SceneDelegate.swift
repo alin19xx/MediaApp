@@ -11,6 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var mainCoordinator: MainCoordinator?
+    var authViewModel = DefaultAuthenticationViewModel()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -22,11 +23,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navController = UINavigationController()
         mainCoordinator = MainCoordinator(navigationController: navController)
         mainCoordinator?.navigationController.navigationBar.prefersLargeTitles = true
-        mainCoordinator?.start()
+        mainCoordinator?.start(authVM: authViewModel)
         
-        window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = navController
-        window?.makeKeyAndVisible()
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = navController
+        self.window = window
+        window.makeKeyAndVisible()
+    }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url, url.scheme == "mediaapp" {
+            authViewModel.processCallbackURL(url)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
