@@ -31,6 +31,9 @@
 		C7E6177F2B65014A007FEA2A /* SessionEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E6177E2B65014A007FEA2A /* SessionEndpoint.swift */; };
 		C7E617832B65048C007FEA2A /* TokenDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E617822B65048C007FEA2A /* TokenDecodable.swift */; };
 		C7E617852B65049A007FEA2A /* SessionDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E617842B65049A007FEA2A /* SessionDecodable.swift */; };
+		C7E617892B650CE7007FEA2A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E617882B650CE7007FEA2A /* KeychainManager.swift */; };
+		C7E6178E2B651524007FEA2A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E6178D2B651524007FEA2A /* AuthViewController.swift */; };
+		C7E617902B651553007FEA2A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E6178F2B651553007FEA2A /* AuthViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +82,9 @@
 		C7E6177E2B65014A007FEA2A /* SessionEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionEndpoint.swift; sourceTree = "<group>"; };
 		C7E617822B65048C007FEA2A /* TokenDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDecodable.swift; sourceTree = "<group>"; };
 		C7E617842B65049A007FEA2A /* SessionDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDecodable.swift; sourceTree = "<group>"; };
+		C7E617882B650CE7007FEA2A /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		C7E6178D2B651524007FEA2A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		C7E6178F2B651553007FEA2A /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,7 @@
 		C7E617472B5D50C2007FEA2A /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C7E617872B650CD2007FEA2A /* Keychain */,
 				C7E617482B5D50FF007FEA2A /* Boxing.swift */,
 			);
 			path = Base;
@@ -207,6 +214,8 @@
 		C7E617522B5D5D55007FEA2A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C7E617912B651831007FEA2A /* Login */,
+				C7E6178A2B6514B6007FEA2A /* Auth */,
 				C7E617862B6505C6007FEA2A /* Home */,
 				C7E617532B5E3CF8007FEA2A /* MainCoordinator */,
 			);
@@ -314,6 +323,46 @@
 			children = (
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		C7E617872B650CD2007FEA2A /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				C7E617882B650CE7007FEA2A /* KeychainManager.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		C7E6178A2B6514B6007FEA2A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				C7E6178C2B651501007FEA2A /* View */,
+				C7E6178B2B6514F4007FEA2A /* ViewModel */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		C7E6178B2B6514F4007FEA2A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C7E6178F2B651553007FEA2A /* AuthViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C7E6178C2B651501007FEA2A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C7E6178D2B651524007FEA2A /* AuthViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C7E617912B651831007FEA2A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,6 +500,7 @@
 				C7E6175B2B5F9518007FEA2A /* MovieDecodable.swift in Sources */,
 				C7E6175D2B5F9691007FEA2A /* MovieResponseDecodable.swift in Sources */,
 				C7E6174E2B5D520D007FEA2A /* UICollectionView+Extension.swift in Sources */,
+				C7E617892B650CE7007FEA2A /* KeychainManager.swift in Sources */,
 				C7E617552B5E3D10007FEA2A /* MainCoordinator.swift in Sources */,
 				C7E6177F2B65014A007FEA2A /* SessionEndpoint.swift in Sources */,
 				C7E617582B5E479C007FEA2A /* NetworkService.swift in Sources */,
@@ -458,10 +508,12 @@
 				C7E617492B5D50FF007FEA2A /* Boxing.swift in Sources */,
 				C7E617832B65048C007FEA2A /* TokenDecodable.swift in Sources */,
 				C7E6174C2B5D51BB007FEA2A /* UITableView+Extension.swift in Sources */,
+				C7E6178E2B651524007FEA2A /* AuthViewController.swift in Sources */,
 				C7E617772B638ACC007FEA2A /* MoviesEndpoint.swift in Sources */,
 				C7E617182B5D4B40007FEA2A /* AppDelegate.swift in Sources */,
 				C7E617752B63832B007FEA2A /* MoviesRepository.swift in Sources */,
 				C7E617852B65049A007FEA2A /* SessionDecodable.swift in Sources */,
+				C7E617902B651553007FEA2A /* AuthViewModel.swift in Sources */,
 				C7E6177A2B6421F2007FEA2A /* AuthRepository.swift in Sources */,
 				C7E617632B623044007FEA2A /* Endpoint.swift in Sources */,
 				C7E6171A2B5D4B40007FEA2A /* SceneDelegate.swift in Sources */,

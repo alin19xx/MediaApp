@@ -12,6 +12,10 @@ enum MovieListType {
 }
 
 struct MoviesEndpoint: Endpoint {
+    var method: HttpMethod = .get
+    
+    var bodyParameters: Data?
+    
     var basePath = "https://api.themoviedb.org/3"
     var path: String = ""
     var queryItems: [URLQueryItem]
