@@ -8,15 +8,15 @@
 import Foundation
 
 struct SessionEndpoint: Endpoint {
-    var basePath: String = "https://api.themoviedb.org/3"
     var path: String = "/authentication/session/new"
-    var queryItems: [URLQueryItem] = []
     var method: HttpMethod = .post
+    var queryItems: [URLQueryItem] = []
     var bodyParameters: Data?
+    var requiresAuthentication: Bool = false
+    var authenticationType: AuthenticationType = .apiKey
 
     init(requestToken: String) {
         let parameters = ["request_token": requestToken]
         self.bodyParameters = try? JSONSerialization.data(withJSONObject: parameters, options: [])
     }
 }
-

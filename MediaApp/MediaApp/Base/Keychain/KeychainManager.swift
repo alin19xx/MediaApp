@@ -13,6 +13,11 @@ protocol KeychainManager {
     func get(for key: String) -> String?
 }
 
+enum Keys {
+    static let requestTokenKey = "TMDbRequestToken"
+    static let sessionIdKey = "TMDbSessionId"
+}
+
 class DefaultKeychainManager: KeychainManager {
     
     init() {}

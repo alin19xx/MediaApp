@@ -18,9 +18,6 @@ final class DefaultAuthorizationRepository: AuthorizationRepository {
     private let networkService: NetworkServiceProtocol
     private let keychainManager: KeychainManager
     
-    private let requestTokenKey = "TMDbRequestToken"
-    private let sessionIdKey = "TMDbSessionId"
-    
     init(networkService: NetworkServiceProtocol = NetworkService(apiKey: ""),
          keychainManager: KeychainManager = DefaultKeychainManager()) {
         self.networkService = networkService
@@ -32,7 +29,7 @@ final class DefaultAuthorizationRepository: AuthorizationRepository {
             switch result {
             case .success(let tokenResponse):
                 let saveSuccess = self.keychainManager.save(tokenResponse.requestToken,
-                                                            for: self.requestTokenKey)
+                                                            for: Keys.requestTokenKey)
                 completion(.success(tokenResponse.requestToken))
             case .failure(let error):
                 completion(.failure(error))
@@ -45,7 +42,8 @@ final class DefaultAuthorizationRepository: AuthorizationRepository {
         networkService.request(endpoint: endpoint) { (result: Result<SessionDecodable, NetworkError>) in
             switch result {
             case .success(let sessionResponse):
-                
+                let saveSuccess = self.keychainManager.save(sessionResponse.sessionId,
+                                                            for: Keys.sessionIdKey)
                 completion(.success(sessionResponse.sessionId))
             case .failure(let error):
                 completion(.failure(error))

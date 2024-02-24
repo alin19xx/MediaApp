@@ -8,9 +8,10 @@
 import Foundation
 
 struct TokenEndpoint: Endpoint {
-    var basePath: String = "https://api.themoviedb.org"
-    var path: String = "/3/authentication/token/new"
-    var queryItems: [URLQueryItem] = []
+    var path: String = "/authentication/token/new"
     var method: HttpMethod = .get
+    var queryItems: [URLQueryItem] = []
     var bodyParameters: Data? = nil
+    var requiresAuthentication: Bool = false
+    var authenticationType: AuthenticationType = .apiKey
 }
