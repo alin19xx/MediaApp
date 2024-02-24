@@ -18,7 +18,7 @@ final class DefaultAuthorizationRepository: AuthorizationRepository {
     private let networkService: NetworkServiceProtocol
     private let keychainManager: KeychainManager
     
-    init(networkService: NetworkServiceProtocol = NetworkService(apiKey: "0478cfb8d5df90070ea0e6c777daa192"),
+    init(networkService: NetworkServiceProtocol = NetworkService(apiKey: ""),
          keychainManager: KeychainManager = DefaultKeychainManager()) {
         self.networkService = networkService
         self.keychainManager = keychainManager
