@@ -12,17 +12,18 @@ enum MovieListType {
 }
 
 struct MoviesEndpoint: Endpoint {
-    var method: HttpMethod = .get
-    
-    var bodyParameters: Data?
-    
-    var basePath = "https://api.themoviedb.org/3"
     var path: String = ""
+    var method: HttpMethod = .get
     var queryItems: [URLQueryItem]
-    
+    var bodyParameters: Data? = nil
+    var requiresAuthentication: Bool = false
+    var authenticationType: AuthenticationType = .apiKey
+
     init(type: MovieListType, language: String, page: Int) {
-        self.queryItems = [URLQueryItem(name: "language", value: language),
-                           URLQueryItem(name: "page", value: String(page))]
+        self.queryItems = [
+            URLQueryItem(name: "language", value: language),
+            URLQueryItem(name: "page", value: String(page))
+        ]
         self.path = getPath(for: type)
     }
     

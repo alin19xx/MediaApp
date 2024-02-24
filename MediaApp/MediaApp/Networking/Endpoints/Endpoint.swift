@@ -13,9 +13,14 @@ protocol Endpoint {
     var queryItems: [URLQueryItem] { get }
     var method: HttpMethod { get }
     var bodyParameters: Data? { get }
+    
+    var requiresAuthentication: Bool { get }
+    var authenticationType: AuthenticationType { get }
 }
 
 extension Endpoint {
+    var basePath: String { "https://api.themoviedb.org/3" }
+    
     var url: URL? {
         var components = URLComponents(string: basePath)
         components?.path = path
@@ -29,4 +34,11 @@ enum HttpMethod: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
+}
+
+enum AuthenticationType {
+    case none
+    case apiKey
+    case requestToken
+    case sessionID
 }
