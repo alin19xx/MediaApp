@@ -14,7 +14,6 @@ protocol Endpoint {
     var method: HttpMethod { get }
     var bodyParameters: Data? { get }
     
-    var requiresAuthentication: Bool { get }
     var authenticationType: AuthenticationType { get }
 }
 

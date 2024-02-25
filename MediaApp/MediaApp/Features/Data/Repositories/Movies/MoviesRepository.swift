@@ -30,7 +30,7 @@ final class DefaultMovieRepository: MovieRepository {
         networkService.request(endpoint: endpoint) { (result: Result<MovieResponseDecodable, NetworkError>) in
             switch result {
             case .success(let response):
-                print("Películas actuales: \(response)")
+                print("Movies: \(response)")
             case .failure(let error):
                 print("Error: \(error)")
             }
