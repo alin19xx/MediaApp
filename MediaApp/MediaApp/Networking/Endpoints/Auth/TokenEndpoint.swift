@@ -12,6 +12,5 @@ struct TokenEndpoint: Endpoint {
     var method: HttpMethod = .get
     var queryItems: [URLQueryItem] = []
     var bodyParameters: Data? = nil
-    var requiresAuthentication: Bool = false
     var authenticationType: AuthenticationType = .apiKey
 }

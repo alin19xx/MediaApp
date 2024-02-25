@@ -12,7 +12,6 @@ struct SessionEndpoint: Endpoint {
     var method: HttpMethod = .post
     var queryItems: [URLQueryItem] = []
     var bodyParameters: Data?
-    var requiresAuthentication: Bool = false
     var authenticationType: AuthenticationType = .apiKey
 
     init(requestToken: String) {

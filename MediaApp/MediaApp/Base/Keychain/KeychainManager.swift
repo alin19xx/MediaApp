@@ -16,14 +16,22 @@ protocol KeychainManager {
 enum Keys {
     static let requestTokenKey = "TMDbRequestToken"
     static let sessionIdKey = "TMDbSessionId"
+    static let tokenExpiryDateKey = "TMDbTokenExpiryDate"
 }
 
 class DefaultKeychainManager: KeychainManager {
     
-    init() {}
+    private let logger: MediaLogger
+    
+    init(logger: MediaLogger = KeychainLogger()) {
+        self.logger = logger
+    }
 
     func save(_ value: String, for key: String) -> Bool {
-        guard let data = value.data(using: .utf8) else { return false }
+        guard let data = value.data(using: .utf8) else {
+            logger.log(message: "Failed to convert value for key '\(key)' to Data", level: .error)
+            return false
+        }
 
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -32,8 +40,15 @@ class DefaultKeychainManager: KeychainManager {
         ]
 
         SecItemDelete(query as CFDictionary)
-
-        return SecItemAdd(query as CFDictionary, nil) == errSecSuccess
+        
+        let result = SecItemAdd(query as CFDictionary, nil)
+        if result == errSecSuccess {
+            logger.log(message: "Successfully saved value for key '\(key)'", level: .info)
+            return true
+        } else {
+            logger.log(message: "Failed to save value for key '\(key)'. Error: \(result)", level: .error)
+            return false
+        }
     }
 
     func get(for key: String) -> String? {
@@ -48,8 +63,15 @@ class DefaultKeychainManager: KeychainManager {
 
         let status = SecItemCopyMatching(query as CFDictionary, &item)
 
-        guard status == errSecSuccess, let data = item as? Data else { return nil }
-        return String(data: data, encoding: .utf8)
+        if status == errSecSuccess,
+           let data = item as? Data,
+           let value = String(data: data, encoding: .utf8) {
+            logger.log(message: "Successfully retrieved value for key '\(key)'", level: .info)
+            return value
+        } else {
+            logger.log(message: "Failed to retrieve value for key '\(key)'. Error: \(status)", level: .error)
+            return nil
+        }
     }
 }
 

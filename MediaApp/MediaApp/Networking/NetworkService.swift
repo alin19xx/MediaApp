@@ -22,11 +22,16 @@ class NetworkService: NetworkServiceProtocol {
     private let apiKey: String
     private let session: URLSession
     private let keychainManager: KeychainManager
+    private let logger: MediaLogger
     
-    init(apiKey: String, session: URLSession = .shared, keychainManager: KeychainManager = DefaultKeychainManager()) {
+    init(apiKey: String,
+         session: URLSession = .shared,
+         keychainManager: KeychainManager = DefaultKeychainManager(),
+         logger: MediaLogger = NetworkingLogger()) {
         self.apiKey = apiKey
         self.session = session
         self.keychainManager = keychainManager
+        self.logger = logger
     }
     
     func request<T: Decodable>(endpoint: Endpoint, completion: @escaping (Result<T, NetworkError>) -> Void) {
@@ -74,18 +79,37 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     private func executeRequest<T: Decodable>(_ request: URLRequest, completion: @escaping (Result<T, NetworkError>) -> Void) {
+        let requestInfo = logRequestWith(request)
+        
         session.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
+                self.logger.log(message: "Network error: No data for request: \(requestInfo)", level: .error)
                 completion(.failure(.noData))
                 return
             }
             do {
                 let decodedResponse = try JSONDecoder().decode(T.self, from: data)
+                self.logger.log(message: "Successful response from: \(requestInfo)", level: .info)
                 completion(.success(decodedResponse))
             } catch {
+                self.logger.log(message: "Decoding error for: \(requestInfo) with error: \(error)", level: .error)
                 completion(.failure(.decodingError(error)))
             }
         }.resume()
+    }
+    
+    private func logRequestWith(_ request: URLRequest) -> String {
+        guard let url = request.url else {
+            logger.log(message: "No URL on request", level: .error)
+            return ""
+        }
+        
+        let safeUrlString = url.absoluteString.replacingOccurrences(of: "api_key=\(apiKey)", with: "api_key=SECRET")
+
+        let requestInfo = "\(request.httpMethod ?? "GET") \(safeUrlString)"
+        logger.log(message: "Starting request: \(requestInfo)", level: .info)
+        
+        return requestInfo
     }
 }
 
