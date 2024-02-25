@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7E3692A2B8B233F00EABE27 /* GenresRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E369292B8B233F00EABE27 /* GenresRepository.swift */; };
+		C7E3692D2B8B23F800EABE27 /* GenresDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3692C2B8B23F800EABE27 /* GenresDecodable.swift */; };
+		C7E369302B8B264200EABE27 /* GenresEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3692F2B8B264200EABE27 /* GenresEndpoint.swift */; };
 		C7E617182B5D4B40007FEA2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E617172B5D4B40007FEA2A /* AppDelegate.swift */; };
 		C7E6171A2B5D4B40007FEA2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E617192B5D4B40007FEA2A /* SceneDelegate.swift */; };
 		C7E6171C2B5D4B40007FEA2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E6171B2B5D4B40007FEA2A /* ViewController.swift */; };
@@ -54,6 +57,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C7E369292B8B233F00EABE27 /* GenresRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresRepository.swift; sourceTree = "<group>"; };
+		C7E3692C2B8B23F800EABE27 /* GenresDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresDecodable.swift; sourceTree = "<group>"; };
+		C7E3692F2B8B264200EABE27 /* GenresEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresEndpoint.swift; sourceTree = "<group>"; };
 		C7E617142B5D4B40007FEA2A /* MediaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7E617172B5D4B40007FEA2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7E617192B5D4B40007FEA2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +118,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C7E369282B8B231A00EABE27 /* Genres */ = {
+			isa = PBXGroup;
+			children = (
+				C7E369292B8B233F00EABE27 /* GenresRepository.swift */,
+			);
+			path = Genres;
+			sourceTree = "<group>";
+		};
+		C7E3692B2B8B23DE00EABE27 /* Genres */ = {
+			isa = PBXGroup;
+			children = (
+				C7E3692C2B8B23F800EABE27 /* GenresDecodable.swift */,
+			);
+			path = Genres;
+			sourceTree = "<group>";
+		};
+		C7E3692E2B8B262900EABE27 /* Genres */ = {
+			isa = PBXGroup;
+			children = (
+				C7E3692F2B8B264200EABE27 /* GenresEndpoint.swift */,
+			);
+			path = Genres;
+			sourceTree = "<group>";
+		};
 		C7E6170B2B5D4B40007FEA2A = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +272,7 @@
 		C7E617592B5F94FF007FEA2A /* Decodables */ = {
 			isa = PBXGroup;
 			children = (
+				C7E3692B2B8B23DE00EABE27 /* Genres */,
 				C7E617812B6503F9007FEA2A /* Auth */,
 				C7E617802B6503EE007FEA2A /* Movies */,
 			);
@@ -251,6 +282,7 @@
 		C7E6175E2B603599007FEA2A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				C7E369282B8B231A00EABE27 /* Genres */,
 				C7E617782B6421DA007FEA2A /* Auth */,
 				C7E617612B6035FA007FEA2A /* Movies */,
 			);
@@ -271,6 +303,7 @@
 				C7E617622B623044007FEA2A /* Endpoint.swift */,
 				C7E6177B2B65012E007FEA2A /* Auth */,
 				C7E617652B6241F6007FEA2A /* Movies */,
+				C7E3692E2B8B262900EABE27 /* Genres */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -503,10 +536,12 @@
 				C7E617892B650CE7007FEA2A /* KeychainManager.swift in Sources */,
 				C7E617552B5E3D10007FEA2A /* MainCoordinator.swift in Sources */,
 				C7E6177F2B65014A007FEA2A /* SessionEndpoint.swift in Sources */,
+				C7E3692A2B8B233F00EABE27 /* GenresRepository.swift in Sources */,
 				C7E617582B5E479C007FEA2A /* NetworkService.swift in Sources */,
 				C7E6171C2B5D4B40007FEA2A /* ViewController.swift in Sources */,
 				C7E617492B5D50FF007FEA2A /* Boxing.swift in Sources */,
 				C7E617832B65048C007FEA2A /* TokenDecodable.swift in Sources */,
+				C7E369302B8B264200EABE27 /* GenresEndpoint.swift in Sources */,
 				C7E6174C2B5D51BB007FEA2A /* UITableView+Extension.swift in Sources */,
 				C7E6178E2B651524007FEA2A /* AuthViewController.swift in Sources */,
 				C7E617772B638ACC007FEA2A /* MoviesEndpoint.swift in Sources */,
@@ -517,6 +552,7 @@
 				C7E6177A2B6421F2007FEA2A /* AuthRepository.swift in Sources */,
 				C7E617632B623044007FEA2A /* Endpoint.swift in Sources */,
 				C7E6171A2B5D4B40007FEA2A /* SceneDelegate.swift in Sources */,
+				C7E3692D2B8B23F800EABE27 /* GenresDecodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
