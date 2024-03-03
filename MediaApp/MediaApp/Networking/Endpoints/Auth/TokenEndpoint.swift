@@ -11,6 +11,6 @@ struct TokenEndpoint: Endpoint {
     var path: String = "/authentication/token/new"
     var method: HttpMethod = .get
     var queryItems: [URLQueryItem] = []
-    var bodyParameters: Data? = nil
+    var bodyParameters: Data?
     var authenticationType: AuthenticationType = .apiKey
 }
