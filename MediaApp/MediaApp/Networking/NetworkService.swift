@@ -9,6 +9,7 @@ import Foundation
 
 protocol NetworkServiceProtocol {
     func request<T: Decodable>(endpoint: Endpoint, completion: @escaping (Result<T, NetworkError>) -> Void)
+    func downloadImage(from urlString: String, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
 enum NetworkError: Error {
@@ -110,6 +111,31 @@ class NetworkService: NetworkServiceProtocol {
         logger.log(message: "Starting request: \(requestInfo)", level: .info)
         
         return requestInfo
+    }
+}
+
+extension NetworkService {
+    func downloadImage(from urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NetworkError.invalidUrl))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(NetworkError.networkError(error)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+            
+            completion(.success(data))
+        }
+        
+        task.resume()
     }
 }
 
