@@ -15,14 +15,14 @@ protocol ImageRepository {
 final class DefaultImageRepository: ImageRepository {
     private let networkService: NetworkServiceProtocol
     private let imageBaseURL = "https://image.tmdb.org/t/p/"
-    
-    init(networkService: NetworkServiceProtocol = NetworkService(apiKey: "")) {
+
+    init(networkService: NetworkServiceProtocol = NetworkService()) {
         self.networkService = networkService
     }
-    
+
     func fetchImageData(withPath path: String, size: String, completion: @escaping (Result<Data, Error>) -> Void) {
         let fullPath = "\(imageBaseURL)\(size)\(path)"
-        
+
         networkService.downloadImage(from: fullPath, completion: completion)
     }
 }

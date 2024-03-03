@@ -15,6 +15,7 @@
 		C7E369392B8BF3A000EABE27 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E369382B8BF3A000EABE27 /* ImageRepository.swift */; };
 		C7E3693F2B8C618400EABE27 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3693E2B8C618400EABE27 /* HomeUseCase.swift */; };
 		C7E369422B8C633200EABE27 /* HomeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E369412B8C633200EABE27 /* HomeEntity.swift */; };
+		C7E369482B94CD6400EABE27 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7E369472B94CD6400EABE27 /* Config.plist */; };
 		C7E617182B5D4B40007FEA2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E617172B5D4B40007FEA2A /* AppDelegate.swift */; };
 		C7E6171A2B5D4B40007FEA2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E617192B5D4B40007FEA2A /* SceneDelegate.swift */; };
 		C7E6171C2B5D4B40007FEA2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E6171B2B5D4B40007FEA2A /* ViewController.swift */; };
@@ -70,6 +71,7 @@
 		C7E369382B8BF3A000EABE27 /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
 		C7E3693E2B8C618400EABE27 /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
 		C7E369412B8C633200EABE27 /* HomeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEntity.swift; sourceTree = "<group>"; };
+		C7E369472B94CD6400EABE27 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		C7E617142B5D4B40007FEA2A /* MediaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7E617172B5D4B40007FEA2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7E617192B5D4B40007FEA2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				C7E617202B5D4B41007FEA2A /* Assets.xcassets */,
 				C7E617222B5D4B41007FEA2A /* LaunchScreen.storyboard */,
 				C7E617252B5D4B41007FEA2A /* Info.plist */,
+				C7E369472B94CD6400EABE27 /* Config.plist */,
 			);
 			path = MediaApp;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7E369482B94CD6400EABE27 /* Config.plist in Resources */,
 				C7E617242B5D4B41007FEA2A /* LaunchScreen.storyboard in Resources */,
 				C7E617212B5D4B41007FEA2A /* Assets.xcassets in Resources */,
 				C7E6171F2B5D4B40007FEA2A /* Main.storyboard in Resources */,
@@ -609,6 +613,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		C7E369442B94BF7000EABE27 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -623,7 +628,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed\"\nfi\n";
+			shellScript = "#export PATH=\"$PATH:/opt/homebrew/bin\"\n#if which swiftlint > /dev/null; then\n#  swiftlint\n#else\n#  echo \"warning: SwiftLint not installed\"\n#fi\n";
 		};
 		C7E369452B94BF8A00EABE27 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;

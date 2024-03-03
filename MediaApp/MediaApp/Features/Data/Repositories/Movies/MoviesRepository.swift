@@ -20,7 +20,7 @@ final class DefaultMovieRepository: MovieRepository {
     
     private let networkService: NetworkServiceProtocol
     
-    init(networkService: NetworkServiceProtocol = NetworkService(apiKey: "")) {
+    init(networkService: NetworkServiceProtocol = NetworkService()) {
         self.networkService = networkService
     }
     
