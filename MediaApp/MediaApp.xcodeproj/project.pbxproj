@@ -12,6 +12,9 @@
 		C7E369302B8B264200EABE27 /* GenresEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3692F2B8B264200EABE27 /* GenresEndpoint.swift */; };
 		C7E369342B8B30D900EABE27 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E369332B8B30D900EABE27 /* Logger.swift */; };
 		C7E369362B8B34CC00EABE27 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E369352B8B34CC00EABE27 /* DateFormatter+Extension.swift */; };
+		C7E369392B8BF3A000EABE27 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E369382B8BF3A000EABE27 /* ImageRepository.swift */; };
+		C7E3693F2B8C618400EABE27 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E3693E2B8C618400EABE27 /* HomeUseCase.swift */; };
+		C7E369422B8C633200EABE27 /* HomeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E369412B8C633200EABE27 /* HomeEntity.swift */; };
 		C7E617182B5D4B40007FEA2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E617172B5D4B40007FEA2A /* AppDelegate.swift */; };
 		C7E6171A2B5D4B40007FEA2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E617192B5D4B40007FEA2A /* SceneDelegate.swift */; };
 		C7E6171C2B5D4B40007FEA2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E6171B2B5D4B40007FEA2A /* ViewController.swift */; };
@@ -64,6 +67,9 @@
 		C7E3692F2B8B264200EABE27 /* GenresEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresEndpoint.swift; sourceTree = "<group>"; };
 		C7E369332B8B30D900EABE27 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		C7E369352B8B34CC00EABE27 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		C7E369382B8BF3A000EABE27 /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
+		C7E3693E2B8C618400EABE27 /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
+		C7E369412B8C633200EABE27 /* HomeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEntity.swift; sourceTree = "<group>"; };
 		C7E617142B5D4B40007FEA2A /* MediaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7E617172B5D4B40007FEA2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7E617192B5D4B40007FEA2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +166,53 @@
 				C7E369332B8B30D900EABE27 /* Logger.swift */,
 			);
 			path = Logger;
+			sourceTree = "<group>";
+		};
+		C7E369372B8BF38D00EABE27 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				C7E369382B8BF3A000EABE27 /* ImageRepository.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		C7E3693A2B8BF80C00EABE27 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C7E3693E2B8C618400EABE27 /* HomeUseCase.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C7E3693B2B8BF82900EABE27 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				C7E3693A2B8BF80C00EABE27 /* Home */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		C7E3693C2B8BF83200EABE27 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				C7E369402B8C631F00EABE27 /* Home */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		C7E3693D2B8BF9BF00EABE27 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		C7E369402B8C631F00EABE27 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C7E369412B8C633200EABE27 /* HomeEntity.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		C7E6170B2B5D4B40007FEA2A = {
@@ -259,6 +312,8 @@
 		C7E617512B5D5D4F007FEA2A /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				C7E3693C2B8BF83200EABE27 /* Entities */,
+				C7E3693B2B8BF82900EABE27 /* UseCases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -304,6 +359,7 @@
 		C7E6175E2B603599007FEA2A /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				C7E369372B8BF38D00EABE27 /* Image */,
 				C7E369282B8B231A00EABE27 /* Genres */,
 				C7E617782B6421DA007FEA2A /* Auth */,
 				C7E617612B6035FA007FEA2A /* Movies */,
@@ -322,6 +378,7 @@
 		C7E617642B6241E9007FEA2A /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
+				C7E3693D2B8BF9BF00EABE27 /* Image */,
 				C7E617622B623044007FEA2A /* Endpoint.swift */,
 				C7E6177B2B65012E007FEA2A /* Auth */,
 				C7E617652B6241F6007FEA2A /* Movies */,
@@ -552,6 +609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7E6177D2B65013E007FEA2A /* TokenEndpoint.swift in Sources */,
+				C7E369422B8C633200EABE27 /* HomeEntity.swift in Sources */,
 				C7E6175B2B5F9518007FEA2A /* MovieDecodable.swift in Sources */,
 				C7E6175D2B5F9691007FEA2A /* MovieResponseDecodable.swift in Sources */,
 				C7E6174E2B5D520D007FEA2A /* UICollectionView+Extension.swift in Sources */,
@@ -567,11 +625,13 @@
 				C7E369302B8B264200EABE27 /* GenresEndpoint.swift in Sources */,
 				C7E6174C2B5D51BB007FEA2A /* UITableView+Extension.swift in Sources */,
 				C7E6178E2B651524007FEA2A /* AuthViewController.swift in Sources */,
+				C7E369392B8BF3A000EABE27 /* ImageRepository.swift in Sources */,
 				C7E617772B638ACC007FEA2A /* MoviesEndpoint.swift in Sources */,
 				C7E617182B5D4B40007FEA2A /* AppDelegate.swift in Sources */,
 				C7E617752B63832B007FEA2A /* MoviesRepository.swift in Sources */,
 				C7E617852B65049A007FEA2A /* SessionDecodable.swift in Sources */,
 				C7E617902B651553007FEA2A /* AuthViewModel.swift in Sources */,
+				C7E3693F2B8C618400EABE27 /* HomeUseCase.swift in Sources */,
 				C7E369342B8B30D900EABE27 /* Logger.swift in Sources */,
 				C7E6177A2B6421F2007FEA2A /* AuthRepository.swift in Sources */,
 				C7E617632B623044007FEA2A /* Endpoint.swift in Sources */,
