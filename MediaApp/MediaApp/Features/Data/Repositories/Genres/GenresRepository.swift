@@ -19,7 +19,7 @@ final class DefaultGenresRepository: GenresRepository {
     
     private let networkService: NetworkServiceProtocol
     
-    init(networkService: NetworkServiceProtocol = NetworkService(apiKey: "")) {
+    init(networkService: NetworkServiceProtocol = NetworkService()) {
         self.networkService = networkService
     }
     
@@ -29,9 +29,9 @@ final class DefaultGenresRepository: GenresRepository {
         networkService.request(endpoint: endpoint) { (result: Result<GenresDecodable, NetworkError>) in
             switch result {
             case .success(let response):
-                print("Genres: \(response)")
+                completion(.success(response))
             case .failure(let error):
-                print("Error: \(error)")
+                completion(.failure(error))
             }
         }
     }

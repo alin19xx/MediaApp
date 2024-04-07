@@ -8,13 +8,19 @@
 import Foundation
 import UIKit
 
+struct HomeEntity {
+    var sections: [HomeSection]
+    var genres: [GenreEntity]
+}
+
+struct GenreEntity {
+    var id: Int
+    var name: String
+}
+
 struct HomeSection {
     let title: String
     let movies: [MovieWithImage]
-}
-
-struct HomeEntity {
-    var sections: [HomeSection]
 }
 
 struct MovieWithImage {

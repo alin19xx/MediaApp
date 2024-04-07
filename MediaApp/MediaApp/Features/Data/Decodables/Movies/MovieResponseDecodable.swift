@@ -8,14 +8,15 @@
 import Foundation
 
 struct MovieResponseDecodable: Decodable {
-    let dates: DateRange
+    let dates: DateRange?
     let page: Int
     let results: [MovieDecodable]
     let totalPages: Int
     let totalResults: Int
     
     enum CodingKeys: String, CodingKey {
-        case dates, page, results
+        case dates = "dates"
+        case page, results
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
