@@ -26,15 +26,15 @@ final class DefaultMovieRepository: MovieRepository {
     
     func fetchMoviesList(type: MovieListType, params: MoviesParameters, completion: @escaping (Result<MovieResponseDecodable, Error>) -> Void) {
         
-        let endpoint = MoviesEndpoint(type: type, language: "es-ES", page: 1)
+        let endpoint = MoviesEndpoint(type: type, language: params.language, page: Int(params.page) ?? 1)
+        
         networkService.request(endpoint: endpoint) { (result: Result<MovieResponseDecodable, NetworkError>) in
             switch result {
             case .success(let response):
-                print("Movies: \(response)")
+                completion(.success(response))
             case .failure(let error):
-                print("Error: \(error)")
+                completion(.failure(error))
             }
         }
     }
-    
 }
