@@ -20,16 +20,13 @@ enum NetworkError: Error {
 }
 
 class NetworkService: NetworkServiceProtocol {
-    private let apiKey: String
     private let session: URLSession
     private let keychainManager: KeychainManager
     private let logger: MediaLogger
     
-    init(apiKey: String,
-         session: URLSession = .shared,
+    init(session: URLSession = .shared,
          keychainManager: KeychainManager = DefaultKeychainManager(),
          logger: MediaLogger = NetworkingLogger()) {
-        self.apiKey = apiKey
         self.session = session
         self.keychainManager = keychainManager
         self.logger = logger
@@ -55,7 +52,7 @@ class NetworkService: NetworkServiceProtocol {
     private func addAuthentication(to components: inout URLComponents, with type: AuthenticationType) {
         switch type {
         case .apiKey:
-            components.queryItems = (components.queryItems ?? []) + [URLQueryItem(name: "api_key", value: apiKey)]
+            components.queryItems = (components.queryItems ?? []) + [URLQueryItem(name: "api_key", value: getTMDBAPIKey())]
         case .sessionID:
             if let sessionID = keychainManager.get(for: Keys.sessionIdKey) {
                 components.queryItems?.append(URLQueryItem(name: "session_id", value: sessionID))
@@ -105,12 +102,26 @@ class NetworkService: NetworkServiceProtocol {
             return ""
         }
         
-        let safeUrlString = url.absoluteString.replacingOccurrences(of: "api_key=\(apiKey)", with: "api_key=SECRET")
+        let safeUrlString = url.absoluteString.replacingOccurrences(of: "api_key=\(getTMDBAPIKey())", with: "api_key=SECRET")
 
         let requestInfo = "\(request.httpMethod ?? "GET") \(safeUrlString)"
         logger.log(message: "Starting request: \(requestInfo)", level: .info)
         
         return requestInfo
+    }
+}
+
+extension NetworkService {
+    private func getTMDBAPIKey() -> String {
+        if let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
+           let config = NSDictionary(contentsOfFile: path),
+           let apiKey = config["TheMovieDBAPIKey"] as? String {
+            return apiKey
+        }
+        
+        logger.log(message: "Could not get API key from Config.plist", level: .error)
+        
+        return ""
     }
 }
 

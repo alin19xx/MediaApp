@@ -7,8 +7,11 @@
 
 import Foundation
 
-enum MovieListType {
-    case nowPlaying, popular, topRated, upcoming
+enum MovieListType: String {
+    case nowPlaying = "Now Playing"
+    case popular = "Popular"
+    case topRated = "Top Rated"
+    case upcoming = "Upcoming"
 }
 
 struct MoviesEndpoint: Endpoint {
@@ -36,6 +39,8 @@ struct MoviesEndpoint: Endpoint {
             return "/movie/top_rated"
         case .upcoming:
             return "/movie/upcoming"
+//        case .latest:
+//            return "/movie/latest"
         }
     }
 }
