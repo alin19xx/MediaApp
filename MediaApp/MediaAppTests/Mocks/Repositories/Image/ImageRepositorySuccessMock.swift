@@ -19,3 +19,15 @@ extension HomeUseCaseSuccessMock {
         }
     }
 }
+
+extension SeriesUseCaseSuccessMock {
+    final class ImageRepositorySuccessMock: ImageRepository {
+        
+        func fetchImageData(withPath path: String,
+                            size: String,
+                            completion: @escaping (Result<Data, Error>) -> Void) {
+            let imageData = Data()
+            completion(.success(imageData))
+        }
+    }
+}

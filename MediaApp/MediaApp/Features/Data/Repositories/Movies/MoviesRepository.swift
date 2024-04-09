@@ -12,11 +12,11 @@ struct MoviesParameters {
     let page: String
 }
 
-protocol MovieRepository {
+protocol MoviesRepository {
     func fetchMoviesList(type: MovieListType, params: MoviesParameters, completion: @escaping (Result<MovieResponseDecodable, Error>) -> Void)
 }
 
-final class DefaultMovieRepository: MovieRepository {
+final class DefaultMoviesRepository: MoviesRepository {
     
     private let networkService: NetworkServiceProtocol
     

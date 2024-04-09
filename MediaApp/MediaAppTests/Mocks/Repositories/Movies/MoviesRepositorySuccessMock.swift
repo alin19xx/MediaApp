@@ -9,7 +9,7 @@ import Foundation
 @testable import MediaApp
 
 extension HomeUseCaseSuccessMock {
-    final class MoviesRepositorySuccessMock: MovieRepository {
+    final class MoviesRepositorySuccessMock: MoviesRepository {
         func fetchMoviesList(type: MovieListType, params: MoviesParameters, completion: @escaping (Result<MovieResponseDecodable, Error>) -> Void) {
             let decoder = JSONDecoder()
             var jsonData: Data?
@@ -23,8 +23,6 @@ extension HomeUseCaseSuccessMock {
                 jsonData = TopRatedMoviesMock.makeJsonMock()
             case .upcoming:
                 jsonData = UpcomingMoviesMock.makeJsonMock()
-//            case .latest:
-//                jsonData = LatestMoviesMock.makeJsonMock()
             }
 
             guard let data = jsonData else {

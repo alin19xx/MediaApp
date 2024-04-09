@@ -12,11 +12,11 @@ protocol HomeUseCase {
 }
 
 class DefaultHomeUseCase: HomeUseCase {
-    private let movieRepository: MovieRepository
+    private let movieRepository: MoviesRepository
     private let imageRepository: ImageRepository
     private let genresRepository: GenresRepository
     
-    init(movieRepository: MovieRepository, 
+    init(movieRepository: MoviesRepository, 
          imageRepository: ImageRepository,
          genresRepository: GenresRepository) {
         self.movieRepository = movieRepository
